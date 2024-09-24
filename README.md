@@ -5,16 +5,15 @@
 Crowdfunding_ETL/
 ├── ETL_Mini_Project_RPuthalpet_CMini.ipynb  # Jupyter Notebook for ETL processes
 ├── Resources/
-│   ├── crowdfunding.xlsx                                    # Excel file with crowdfunding data
-│   └── contacts.xlsx                                        # Excel file with contact data
-├── category.csv                                            # Output CSV for categories
-├── subcategory.csv                                         # Output CSV for subcategories
-├── campaign.csv                                            # Output CSV for campaigns
-├── contacts.csv                                            # Output CSV for contacts
-├── crowdfunding_db_schema.sql                              # SQL file for database schema
-└── README.md                                               # This README file
+│      └──crowdfunding.xlsx                   # Excel file with crowdfunding data
+│      └── contacts.xlsx                      # Excel file with contact data
+│      └── category.csv                       # Output CSV for categories
+│      └── subcategory.csv                    # Output CSV for subcategories
+│      └── campaign.csv                       # Output CSV for campaigns
+│      └── contacts.csv                       # Output CSV for contacts                    
+├── crowdfunding_db_schema.sql                # SQL file for database schema                  
+└── README.md                                 # This README file
 ```
-
 ## Getting Started
 
 ### Prerequisites
