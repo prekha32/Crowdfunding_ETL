@@ -1,8 +1,5 @@
 # Project-2: Crowdfunding ETL
 
-## Overview
-The goal of this project is to analyze food hygiene ratings from the UK Food Standards Agency to aid *Eat Safe, Love* magazine in guiding their articles. This repository contains the necessary tools and datasets to perform ETL processes, updates, and exploratory analysis on the data.
-
 ## Project Structure
 ```
 Crowdfunding_ETL/
