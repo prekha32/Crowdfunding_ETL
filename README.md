@@ -1,67 +1,73 @@
-# Project-2
+# Project-2: Crowdfunding ETL
 
-Crowdfunding_ETL/
-├── **ETL_Mini_Project_RPuthalpet_CMini.ipynb**       # Jupyter Notebook for SQL analysis
-├── **Resources/crowdfunding.xlsx**        # This is excel file in Resources folder
-├── **Resources/contacts.xlsx**        # This is excel file in Resources folder
-├── **README.md**                    # This README file
-
-## Instructions
-The UK Food Standards Agency evaluates various establishments across the United Kingdom and assigns them a food hygiene rating. You've been contracted by the editors of a food magazine, *Eat Safe, Love*, to evaluate some of the ratings data in order to help their journalists and food critics decide where to focus future articles.
+## Overview
+The goal of this project is to analyze food hygiene ratings from the UK Food Standards Agency to aid *Eat Safe, Love* magazine in guiding their articles. This repository contains the necessary tools and datasets to perform ETL processes, updates, and exploratory analysis on the data.
 
 ## Project Structure
-## Part 1: Database and Jupyter Notebook Setup
+```
+Crowdfunding_ETL/
+├── ETL_Mini_Project_RPuthalpet_CMini.ipynb  # Jupyter Notebook for SQL analysis
+├── Resources/crowdfunding.xlsx                # Excel file containing crowdfunding data
+├── Resources/contacts.xlsx                    # Excel file containing contact information
+├── README.md                                   # This README file
+```
 
-Use **NoSQL_setup_starter.ipynb** for this section of the challenge.
+## Instructions
 
-1. Import the data provided in the `establishments.json` file from your Terminal. Name the database `uk_food` and the collection `establishments`. Copy the text you used to import your data from your Terminal to a markdown cell in your notebook.
-2. In the notebook, import the necessary libraries: `PyMongo` and `Pretty Print (pprint)`.
-3. Create an instance of the Mongo Client.
-4. Confirm the database and data import was successful:
-    - List the databases in MongoDB and confirm that `uk_food` is listed.
-    - List the collection(s) in the `uk_food` database to ensure that `establishments` is present.
-    - Find and display one document in the `establishments` collection using `find_one()` and display it with `pprint`.
-5. Assign the `establishments` collection to a variable for further use.
+### Part 1: Database and Jupyter Notebook Setup
+1. **Data Import**: Use the `establishments.json` file to create a MongoDB database named `uk_food` and a collection named `establishments`. 
+   - Ensure to document the command used for data import in the notebook.
 
-## Part 2: Update the Database
+2. **Library Imports**: Import necessary libraries including `PyMongo` and `Pretty Print (pprint)`.
 
-Use **NoSQL_setup_starter.ipynb** for this section of the challenge.
+3. **Mongo Client Setup**: Create an instance of the Mongo Client to interact with the MongoDB database.
 
-The magazine editors have requested the following modifications before performing any queries or analysis:
+4. **Database Validation**: 
+   - List all databases and ensure `uk_food` is present.
+   - Check the collections within `uk_food` to confirm the `establishments` collection exists.
+   - Retrieve and display one document from the `establishments` collection using `find_one()`.
 
-1. A new halal restaurant has opened in Greenwich but hasn't been rated yet. Add the following information about the restaurant to the database.
-2. Find the `BusinessTypeID` for "Restaurant/Cafe/Canteen" and return only the `BusinessTypeID` and `BusinessType` fields.
-3. Update the new restaurant with the `BusinessTypeID` found in the previous step.
-4. Remove any establishments located in the "Dover" Local Authority:
-    - Count how many documents have "Dover" as the Local Authority.
-    - Delete these establishments from the database, and re-check the count to ensure deletion.
-5. Convert some string-encoded numerical values to their correct data types:
-    - Use `update_many` to convert latitude and longitude values to decimal numbers.
-    - Use `update_many` to convert `RatingValue` to integers.
+5. **Variable Assignment**: Assign the `establishments` collection to a variable for further operations.
 
-## Part 3: Exploratory Analysis
+### Part 2: Update the Database
+1. **Add New Restaurant**: Insert a new halal restaurant in Greenwich that has yet to be rated.
 
-Use **NoSQL_analysis_starter.ipynb** for this section of the challenge.
+2. **Find BusinessTypeID**: Identify the `BusinessTypeID` for "Restaurant/Cafe/Canteen".
 
-*Eat Safe, Love* editors have specific questions to guide their content creation, and you will use the establishments data to help them decide where to visit and which places to avoid.
+3. **Update Restaurant**: Update the newly added restaurant with the `BusinessTypeID` obtained.
 
-### Notes:
-- `RatingValue` refers to the overall rating by the Food Authority and ranges from 1-5. Higher values indicate better ratings.
-- Non-numeric values like 'Pass' will be coerced into `null` values during database setup before converting ratings to integers.
-- Hygiene, Structural, and ConfidenceInManagement scores work in reverse — higher values indicate worse performance.
+4. **Remove Establishments in Dover**: 
+   - Count and delete establishments in the "Dover" Local Authority.
+   - Confirm deletion by recounting the documents.
 
-### Questions to Answer:
-For each question:
-- Use `count_documents` to display the number of documents in the result.
-- Display the first document in the results using `pprint`.
-- Convert the results into a Pandas DataFrame, display the number of rows in the DataFrame, and show the first 10 rows.
+5. **Data Type Conversion**: 
+   - Use `update_many` to convert latitude and longitude to decimal numbers.
+   - Convert `RatingValue` to integers where applicable.
 
-1. **Which establishments have a hygiene score of 20?**
-2. **Which establishments in London have a `RatingValue` of 4 or higher?**  
-   - Hint: Use `$regex` to search for establishments in London (the Local Authority name might be longer than just "London").
-3. **What are the top 5 establishments with a `RatingValue` of 5, sorted by the lowest hygiene score, nearest to the new restaurant "Penang Flavours"?**
-   - Hint: Use geocode data to find the nearest locations. Search within 0.01 degree on either side of the latitude and longitude.
-4. **How many establishments in each Local Authority have a hygiene score of 0?**  
-   - Sort the results from highest to lowest and print the top ten Local Authorities.
-   - Hint: Use the aggregation method to perform this task.
+### Part 3: Exploratory Analysis
+Utilize the `NoSQL_analysis_starter.ipynb` notebook to answer specific editorial questions based on the establishments data:
 
+1. **Hygiene Score of 20**: Identify establishments with a hygiene score of 20.
+   
+2. **London Establishments with High Ratings**: Find establishments in London with a `RatingValue` of 4 or higher. Use regex for matching.
+
+3. **Top Rated Establishments**: Determine the top 5 establishments with a `RatingValue` of 5, sorted by hygiene score and proximity to "Penang Flavours".
+
+4. **Local Authority Hygiene Scores**: Count how many establishments have a hygiene score of 0 in each Local Authority, sorting and displaying the top ten.
+
+### Notes
+- **RatingValue**: Ranges from 1-5; higher values signify better ratings.
+- **Scores Interpretation**: Non-numeric values like 'Pass' will be treated as `null`. Higher scores for hygiene, structural, and management confidence indicate poorer performance.
+
+## How to Use This Repository
+1. Clone the repository to your local machine.
+2. Navigate to the `Crowdfunding_ETL/` directory.
+3. Open `ETL_Mini_Project_RPuthalpet_CMini.ipynb` and `NoSQL_analysis_starter.ipynb` in Jupyter Notebook or any compatible environment.
+4. Follow the instructions outlined in the notebooks to complete the ETL processes and analysis.
+
+## License
+This project is licensed under the MIT License. See the LICENSE file for details. 
+
+---
+
+Feel free to contribute to this project by submitting issues or pull requests!
