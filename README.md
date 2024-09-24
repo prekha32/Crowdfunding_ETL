@@ -65,9 +65,6 @@ Utilize the `NoSQL_analysis_starter.ipynb` notebook to answer specific editorial
 3. Open `ETL_Mini_Project_RPuthalpet_CMini.ipynb` and `NoSQL_analysis_starter.ipynb` in Jupyter Notebook or any compatible environment.
 4. Follow the instructions outlined in the notebooks to complete the ETL processes and analysis.
 
-## License
-This project is licensed under the MIT License. See the LICENSE file for details. 
-
 ---
 
 Feel free to contribute to this project by submitting issues or pull requests!
