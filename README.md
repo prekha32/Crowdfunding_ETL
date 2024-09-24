@@ -6,65 +6,97 @@ The goal of this project is to analyze food hygiene ratings from the UK Food Sta
 ## Project Structure
 ```
 Crowdfunding_ETL/
-├── ETL_Mini_Project_RPuthalpet_CMini.ipynb  # Jupyter Notebook for SQL analysis
-├── Resources/crowdfunding.xlsx                # Excel file containing crowdfunding data
-├── Resources/contacts.xlsx                    # Excel file containing contact information
-├── README.md                                   # This README file
+├── ETL_Mini_Project_YourFirstInitial_YourLastName.ipynb  # Jupyter Notebook for ETL processes
+├── Resources/
+│   ├── crowdfunding.xlsx                                    # Excel file with crowdfunding data
+│   └── contacts.xlsx                                        # Excel file with contact data
+├── category.csv                                            # Output CSV for categories
+├── subcategory.csv                                         # Output CSV for subcategories
+├── campaign.csv                                            # Output CSV for campaigns
+├── contacts.csv                                            # Output CSV for contacts
+├── crowdfunding_db_schema.sql                              # SQL file for database schema
+└── README.md                                               # This README file
 ```
+
+## Getting Started
+
+### Prerequisites
+- Python 3.x
+- Pandas library
+- Jupyter Notebook
+- Postgres
+
+### Initial Setup
+1. **Create a Repository**: One group member should create a new repository named `Crowdfunding_ETL` and add the partner as a collaborator.
+2. **Clone Repository**: Clone the repository to your local machine.
+3. **Rename Notebook**: Rename the `ETL_Mini_Project_starter_code.ipynb` file with the format `ETL_Mini_Project_NRomanoff_JSmith.ipynb` (using initials of both members).
+4. **Add Resources**: Include the Resources folder with `crowdfunding.xlsx` and `contacts.xlsx` files in the repository.
+5. **Push Changes**: Push the changes to GitHub, and have your partner pull the latest version.
+
+### Collaboration Tips
+- Communicate regularly with your partner to discuss progress and challenges.
+- Consider breaking up the project into sections for independent work, then combine them into the final notebook.
 
 ## Instructions
 
-### Part 1: Database and Jupyter Notebook Setup
-1. **Data Import**: Use the `establishments.json` file to create a MongoDB database named `uk_food` and a collection named `establishments`. 
-   - Ensure to document the command used for data import in the notebook.
+### 1. Create Category and Subcategory DataFrames
+- **Category DataFrame**:
+  - Extract unique categories from `crowdfunding.xlsx`.
+  - Create columns: `category_id` (e.g., "cat1", "cat2") and `category` (category titles).
+  - Export to `category.csv`.
 
-2. **Library Imports**: Import necessary libraries including `PyMongo` and `Pretty Print (pprint)`.
+- **Subcategory DataFrame**:
+  - Extract unique subcategories similarly.
+  - Create columns: `subcategory_id` (e.g., "subcat1", "subcat2") and `subcategory` (subcategory titles).
+  - Export to `subcategory.csv`.
 
-3. **Mongo Client Setup**: Create an instance of the Mongo Client to interact with the MongoDB database.
+### 2. Create the Campaign DataFrame
+- Extract and transform data from `crowdfunding.xlsx` to create a Campaign DataFrame with the following columns:
+  - `cf_id`
+  - `contact_id`
+  - `company_name`
+  - `description` (renamed from `blurb`)
+  - `goal` (as float)
+  - `pledged` (as float)
+  - `outcome`
+  - `backers_count`
+  - `country`
+  - `currency`
+  - `launch_date` (renamed from `launched_at` with datetime format)
+  - `end_date` (renamed from `deadline` with datetime format)
+  - `category_id` (linked to category DataFrame)
+  - `subcategory_id` (linked to subcategory DataFrame)
+- Export to `campaign.csv`.
 
-4. **Database Validation**: 
-   - List all databases and ensure `uk_food` is present.
-   - Check the collections within `uk_food` to confirm the `establishments` collection exists.
-   - Retrieve and display one document from the `establishments` collection using `find_one()`.
+### 3. Create the Contacts DataFrame
+Choose one of the following methods:
 
-5. **Variable Assignment**: Assign the `establishments` collection to a variable for further operations.
+- **Option 1: Python Dictionary Methods**
+  - Import `contacts.xlsx` and convert rows to dictionaries.
+  - Extract values and split the `name` column into first and last names.
+  - Export to `contacts.csv`.
 
-### Part 2: Update the Database
-1. **Add New Restaurant**: Insert a new halal restaurant in Greenwich that has yet to be rated.
+- **Option 2: Regular Expressions**
+  - Import `contacts.xlsx` and use regex to extract relevant fields.
+  - Clean and split the `name` column.
+  - Export to `contacts.csv`.
 
-2. **Find BusinessTypeID**: Identify the `BusinessTypeID` for "Restaurant/Cafe/Canteen".
+### 4. Create the Crowdfunding Database
+1. **ERD and Table Schema**:
+   - Inspect the four CSV files and create an ERD using a tool like QuickDBD.
+   - Develop a table schema for each CSV, specifying data types, primary keys, and foreign keys.
+   - Save the schema as `crowdfunding_db_schema.sql`.
 
-3. **Update Restaurant**: Update the newly added restaurant with the `BusinessTypeID` obtained.
+2. **Database Creation**:
+   - Create a Postgres database named `crowdfunding_db`.
+   - Use the schema to create tables in the correct order.
+   - Verify table creation with SELECT statements.
 
-4. **Remove Establishments in Dover**: 
-   - Count and delete establishments in the "Dover" Local Authority.
-   - Confirm deletion by recounting the documents.
+3. **Data Import**:
+   - Import each CSV file into the corresponding SQL table.
+   - Confirm data integrity with SELECT statements for each table.
 
-5. **Data Type Conversion**: 
-   - Use `update_many` to convert latitude and longitude to decimal numbers.
-   - Convert `RatingValue` to integers where applicable.
+## Conclusion
+This project will help you gain hands-on experience with data extraction, transformation, loading, and database management. Remember to document your process and communicate effectively with your partner throughout the project.
 
-### Part 3: Exploratory Analysis
-Utilize the `NoSQL_analysis_starter.ipynb` notebook to answer specific editorial questions based on the establishments data:
-
-1. **Hygiene Score of 20**: Identify establishments with a hygiene score of 20.
-   
-2. **London Establishments with High Ratings**: Find establishments in London with a `RatingValue` of 4 or higher. Use regex for matching.
-
-3. **Top Rated Establishments**: Determine the top 5 establishments with a `RatingValue` of 5, sorted by hygiene score and proximity to "Penang Flavours".
-
-4. **Local Authority Hygiene Scores**: Count how many establishments have a hygiene score of 0 in each Local Authority, sorting and displaying the top ten.
-
-### Notes
-- **RatingValue**: Ranges from 1-5; higher values signify better ratings.
-- **Scores Interpretation**: Non-numeric values like 'Pass' will be treated as `null`. Higher scores for hygiene, structural, and management confidence indicate poorer performance.
-
-## How to Use This Repository
-1. Clone the repository to your local machine.
-2. Navigate to the `Crowdfunding_ETL/` directory.
-3. Open `ETL_Mini_Project_RPuthalpet_CMini.ipynb` and `NoSQL_analysis_starter.ipynb` in Jupyter Notebook or any compatible environment.
-4. Follow the instructions outlined in the notebooks to complete the ETL processes and analysis.
-
----
-
-Feel free to contribute to this project by submitting issues or pull requests!
+Feel free to reach out with questions or contributions!
