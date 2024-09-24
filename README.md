@@ -3,7 +3,7 @@
 ## Project Structure
 ```
 Crowdfunding_ETL/
-├── ETL_Mini_Project_YourFirstInitial_YourLastName.ipynb  # Jupyter Notebook for ETL processes
+├── ETL_Mini_Project_RPuthalpet_CMini.ipynb  # Jupyter Notebook for ETL processes
 ├── Resources/
 │   ├── crowdfunding.xlsx                                    # Excel file with crowdfunding data
 │   └── contacts.xlsx                                        # Excel file with contact data
