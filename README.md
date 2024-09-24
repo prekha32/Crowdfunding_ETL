@@ -12,7 +12,7 @@ Crowdfunding_ETL/
 │      └── campaign.csv                       # Output CSV for campaigns
 │      └── contacts.csv                       # Output CSV for contacts                    
 ├── crowdfunding_db_schema.sql                # SQL file for database schema                  
-└── README.md                                 # This README file
+├── README.md                                 # This README file
 ```
 ## Getting Started
 
