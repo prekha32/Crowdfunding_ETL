@@ -11,7 +11,9 @@ Crowdfunding_ETL/
 │      └── subcategory.csv                    # Output CSV for subcategories
 │      └── campaign.csv                       # Output CSV for campaigns
 │      └── contacts.csv                       # Output CSV for contacts                    
-├── crowdfunding_db_schema.sql                # SQL file for database schema                  
+├── crowdfunding_db_schema.sql                # SQL file for database schema
+├── ERD Diagram                
+│      └──QuickDBD_ERD Diagram.png            # ERD diagram                 
 ├── README.md                                 # This README file
 ```
 ## Getting Started
